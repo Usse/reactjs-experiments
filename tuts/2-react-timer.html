@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>React TUT 1</title>
+		<script src="../build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<div id='myElem'></div>
+		<script type="text/jsx">
+			var mountNode = document.getElementById('myElem');
+			var Timer = React.createClass({
+				getInitialState : function() {
+					return {
+						secondsElapsed: 0,
+						type : 'Even'
+					}
+				},
+
+
+				tick : function() {
+					this.setState({
+							secondsElapsed : this.state.secondsElapsed += 1
+
+					});
+					this.setState({
+						type : this.checkType()
+					})
+					console.log(this.state);
+				},
+
+
+				checkType : function() {
+					return this.state.secondsElapsed % 2 == 0 ? 'Even' : 'Odd'
+				},
+
+
+				componentDidMount: function() {
+					this.interval = setInterval(this.tick, 1000);
+				},
+
+
+				componentWillUnmount : function() {
+					clearInterval(this.interval);
+				},
+
+
+				render : function() {
+					return(
+						<div>
+							<div>Seconds elapsed: {this.state.secondsElapsed}</div>
+							<div>Type : {this.state.type}</div>
+						</div>
+					);
+				}
+
+			});
+			React.render(<Timer />, mountNode);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>a
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>React TUT 1</title>
+		<script src="../build/react.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../build/JSXTransformer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<div id='myElem'></div>
+		<script type="text/jsx">
+			var mountNode = document.getElementById('myElem');	
+			var HelloMessage = React.createClass({
+				render : function() {
+					return <div>Yo! {this.props.name}</div>;
+				}
+			});
+			React.render(<HelloMessage name="Usse" />, mountNode);
+		</script>
+	
+	</body>
+</html>
