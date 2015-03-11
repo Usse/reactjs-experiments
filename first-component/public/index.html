@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Component</title>
+    <script src="https://fb.me/react-0.13.0.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/flatly/bootstrap.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/jsx">
+
+
+      var converter = new Showdown.converter();
+
+
+      var CommentBox = React.createClass({
+        render: function() {
+          return (
+            <div className="commentBox">
+              <h4>Comments</h4>
+              <CommentList />
+              <CommentForm />
+            </div>
+          );
+        }
+      });
+
+
+      var CommentForm = React.createClass({
+        render : function() {
+          return (
+            <div className="commentForm">
+              Comment Form
+            </div>
+          );
+        }
+      });
+
+
+      var Comment = React.createClass({
+        render : function() {
+          var rawMarkup = converter.makeHtml(this.props.children.toString());
+          return (
+            <div className="comment">
+              <h4 className="commentAuthor">
+                {this.props.author}
+              </h4>
+              <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+            </div>
+          );
+        }
+      });
+
+
+      var CommentList = React.createClass({
+        render : function() {
+          return (
+            <div className="commentList">
+              <Comment author="Pete Hunt">This is a comment</Comment>
+              <Comment author="Jordan Walke">This is *another* comment</Comment>
+            </div>
+          );
+        }
+      });
+
+
+      React.render(
+        <CommentBox />,
+        document.getElementById('content')
+      );
+
+
+
+
+
+    </script>
+
+  </body>
+</html>
