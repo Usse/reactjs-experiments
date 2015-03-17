@@ -19,7 +19,6 @@
       </div>
     </div>
 
-
     <script type="text/jsx">
 
       var converter = new Showdown.converter();
@@ -75,7 +74,6 @@
         }
       });
 
-
       var CommentForm = React.createClass({
         handleSubmit : function (e) {
           e.preventDefault();
@@ -100,7 +98,6 @@
         }
       });
 
-
       var Comment = React.createClass({
         render : function() {
           var rawMarkup = converter.makeHtml(this.props.children.toString());
@@ -114,7 +111,6 @@
           );
         }
       });
-
 
       var CommentList = React.createClass({
         render : function() {
@@ -135,17 +131,11 @@
         }
       });
 
-
       React.render(
         <CommentBox url="comments.json" pollInterval={2000}/>,
         document.getElementById('content')
       );
 
-
-
-
-
     </script>
-
   </body>
 </html>
