@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>07</title>
+   	<script src="../build/react.js"></script>
+   	<script src="../build/JSXTransformer.js"></script>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/superhero/bootstrap.min.css" rel="stylesheet">
+
+		<style>
+			body { padding:30px;}
+			#app {margin-top:5px;}
+		</style>
+
+	</head>
+	<body>
+
+		<script type="text/jsx">
+			
+			var Button = React.createClass({
+				getInitialState : function() {
+					return {increasing:false};
+				},
+				update : function () {
+					//console.log('update ', this.getDOMNode());
+					this.setProps({val : this.props.val + 1})
+				},
+				componentWillReceiveProps : function(nextProps) {
+					this.setState({
+						increasing : nextProps.val > this.props.val
+					})
+				},
+				shouldComponentUpdate : function(nextProps, nextState) {
+					return nextProps.val % 2 === 0;
+				},
+				componentDidUpdate : function(prevProps, prevState) {
+					console.log('prevProps ', prevProps);
+				},
+				render: function() {
+					console.log(this.state.increasing);
+					return (
+						<button className="btn btn-primary" onClick={this.update}>{this.props.val}</button>
+					);
+				}
+			});
+
+			React.render(<Button val={0} />, document.body)
+
+		</script>
+
+	</body>
+
+</html>

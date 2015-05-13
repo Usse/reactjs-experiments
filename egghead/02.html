@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>02</title>
+   		<script src="../build/react.js"></script>
+    	<script src="../build/JSXTransformer.js"></script>
+
+    	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			html {
+				font-family: 'Roboto', sans-serif;
+			}
+		</style>
+
+  </head>
+  <body>
+    
+    <script type="text/jsx">
+			var App = React.createClass({
+				getInitialState : function() {
+					return {
+						txt : "this is the txt state"
+					}
+				},
+				update: function(e) {
+					this.setState({txt : e.target.value});
+				},
+				render:function() {
+					return (
+						<div>	
+							<h1>R</h1>
+							<p>{this.state.txt}</p>
+							<p>{this.props.txt}</p>
+							<input type="text" onChange={this.update} value={this.state.txt}/>
+						</div>
+					);
+				}
+			});
+
+			//React.render(<App txt="this is the props text" cat={2}/>, document.body);
+			React.render(<App txt="this is the txt prop"/>, document.body);   
+		</script>
+  
+  </body>
+</html>

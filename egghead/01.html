@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>01</title>
+   		<script src="../build/react.js"></script>
+    	<script src="../build/JSXTransformer.js"></script>
+
+    	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			html {
+				font-family: 'Roboto', sans-serif;
+			}
+		</style>
+
+  </head>
+  <body>
+    
+    <script type="text/jsx">
+			var App = React.createClass({
+				getDefaultProps: function() {
+					return {
+						txt : 'default text',
+						cat : 0
+					}
+				},
+				propTypes : {
+					txt : React.PropTypes.string,
+					cat : React.PropTypes.number.isRequired
+				},
+				render:function(){
+					return (
+						<div>	
+							<h1>R</h1>
+							<h2>R</h2>
+							<p>{this.props.txt} - {this.props.cat}</p>
+						</div>
+					);
+				}
+			});
+
+			//React.render(<App txt="this is the props text" cat={2}/>, document.body);
+			React.render(<App cat={2}/>, document.body);   
+		</script>
+  
+  </body>
+</html>
