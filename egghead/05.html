@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>05</title>
+   	<script src="../build/react.js"></script>
+   	<script src="../build/JSXTransformer.js"></script>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/lumen/bootstrap.min.css" rel="stylesheet">
+
+		<style>
+			#app {margin-top:40px;}
+		</style>
+
+	</head>
+	<body>
+
+
+		<script type="text/jsx">
+		var App = React.createClass({
+			render: function() {
+				return (
+					<div>
+						<Button>I <Heart /> React</Button>
+					</div>
+				);
+			}
+		});
+
+		var Button = React.createClass({
+			render: function() {
+				return (
+					<button className="btn btn-primary">{this.props.children}</button>
+				);
+			}
+		});
+
+		var Heart = React.createClass({
+			render: function() {
+				return (
+					<span className="glyphicon glyphicon-heart"></span>
+				);
+			}
+		});
+
+
+		React.render(<App />, document.getElementById('app'));
+
+
+		</script>
+
+		
+		<div class="container" id="app"></div>
+
+
+	</body>
+
+</html>

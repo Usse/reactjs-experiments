@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>06</title>
+   	<script src="../build/react.js"></script>
+   	<script src="../build/JSXTransformer.js"></script>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/lumen/bootstrap.min.css" rel="stylesheet">
+
+		<style>
+			body { padding:30px;}
+			#app {margin-top:5px;}
+		</style>
+
+	</head>
+	<body>
+
+		<script type="text/jsx">
+			
+
+			var Button = React.createClass({
+				getInitialState : function() {
+					return {
+						val : 0
+					}
+				},
+				update : function() {
+					this.setState({
+						val : this.state.val + 1
+					})
+				},
+				componentWillMount : function() {
+					this.setState({m : 12});
+					console.log("mounting");
+				},
+				componentDidMount : function() {
+					console.log("mounted");
+					console.log(this.getDOMNode());
+					this.inc = setInterval(this.update,500)
+				},
+				componentWillUnmount : function() {
+					console.log("unmounted");
+					clearInterval(this.inc);
+				},
+				render: function() {
+					console.log("rendering");
+					return (
+						<button className="btn btn-primary" onClick={this.update}>{this.state.val*this.state.m}</button>
+					);
+				}
+			});		
+
+
+			var App = React.createClass({
+				mount : function () {
+					React.render(<Button/>, document.getElementById('app'));
+				},
+				unmount : function () {
+					React.unmountComponentAtNode(document.getElementById('app'));
+				},
+				render: function() {
+					return (
+						<div>	
+							<button className="btn btn-success" onClick={this.mount}>Mount</button>
+							<button className="btn btn-danger" onClick={this.unmount}>UnMount</button>
+							<div id="app"></div>
+						</div>
+					);
+				}
+			});
+
+
+			React.render(<App />, document.body)
+
+		</script>
+
+	</body>
+
+</html>

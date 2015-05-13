@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>04</title>
+   		<script src="../build/react.js"></script>
+    	<script src="../build/JSXTransformer.js"></script>
+
+    	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			html {
+				font-family: 'Roboto', sans-serif;
+			}
+
+			.color {
+				margin:20px; width:150px; height:150px; border:1px solid #333;
+			}
+		</style>
+
+  </head>
+  <body>
+    
+    <script type="text/jsx">
+			var App = React.createClass({
+				getInitialState : function() {
+					return {
+						red : 128,
+						green : 128,
+						blue : 128
+					}
+				},
+				update: function() {
+					this.setState({
+			      red:this.refs.red.refs.inp.getDOMNode().value,
+			      green:this.refs.green.refs.inp.getDOMNode().value,
+			      blue:this.refs.blue.refs.inp.getDOMNode().value
+					});
+				},
+				render:function() {
+					return (
+						<div>	
+							<Slider ref="red" update={this.update} />
+							<label>{this.state.red}</label>
+							<Slider ref="green" update={this.update} />
+							<label>{this.state.green}</label>
+							<Slider ref="blue" update={this.update} />
+							<label>{this.state.blue}</label>
+
+							<div className="color" 
+								style={{
+									backgroundColor: 'rgb(' + this.state.red + ',' + this.state.green + ',' + this.state.blue + ')'
+								}}
+							></div>
+
+						</div>
+					);
+				}
+			});
+
+			var Slider = React.createClass({
+				render:function() {
+					return (
+						<div>
+							<input ref="inp" type="range" min="0" max="255" onChange={this.props.update} />
+							<br/>
+						</div>
+					);
+				}
+			});
+
+
+
+			//React.render(<App txt="this is the props text" cat={2}/>, document.body);
+			React.render(<App />, document.body);   
+		</script>
+  
+  </body>
+</html>
