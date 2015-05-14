@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>07</title>
+   	<script src="../build/react.js"></script>
+   	<script src="../build/JSXTransformer.js"></script>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/superhero/bootstrap.min.css" rel="stylesheet">
+
+		<style>
+			body { padding:30px;}
+			label {margin-left:10px;}
+		</style>
+
+	</head>
+	<body>
+
+		<script type="text/jsx">
+
+		var ReactMixin = {
+			getInitialState : function() {
+				return {count:0}
+			},
+			componentWillMount : function() {
+				console.log('will mount');
+			},
+			incrementCount: function() {
+				this.setState({
+					count : this.state.count + 1
+				})
+			}
+		}
+
+
+			
+			var App = React.createClass({
+				render: function() {
+					return (
+						<div>
+							<Button txt="this is the button" />
+							<Label txt="this is the label" />
+						</div>	
+					);
+				}
+			});
+
+
+			var Button = React.createClass({
+				mixins: [ReactMixin],
+				render: function() {
+					return (
+						<button onClick={this.incrementCount} className="btn btn-warning">{this.props.txt} - {this.state.count}</button>
+					);
+				}
+			});
+
+			var Label = React.createClass({
+				mixins: [ReactMixin],
+				componentWillMount: function() {
+					setInterval(this.incrementCount,1000)
+				},
+				render: function() {
+					return (
+						<label>{this.props.txt} - {this.state.count}</label>
+					);
+				}
+			});
+
+
+			React.render(<App />, document.body)
+
+		</script>
+
+	</body>
+
+</html>
