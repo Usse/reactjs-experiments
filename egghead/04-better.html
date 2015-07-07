@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>04</title>
+   		<script src="../build/react.js"></script>
+    	<script src="../build/JSXTransformer.js"></script>
+
+    	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			html {
+				font-family: 'Roboto', sans-serif;
+			}
+
+			.color {
+				margin:20px; width:150px; height:150px; border:1px solid #333;
+			}
+		</style>
+
+  </head>
+  <body>
+    
+    <script type="text/jsx">
+			var App = React.createClass({
+				getInitialState : function() {
+					return {
+						red : 128,
+						green : 128,
+						blue : 128
+					}
+				},
+				update: function() {
+					this.setState({
+			      red:this.refs.red.refs.inp.getDOMNode().value,
+			      blue:this.refs.blue.refs.inp.getDOMNode().value,
+			      green:this.refs.green.refs.inp.getDOMNode().value
+					});
+				},
+				render:function() {
+					return (
+						<div>	
+							<NumInput 
+								ref="red" 
+								min= {0}
+								max= {255}
+								step= {1}
+								val= {this.state.red}
+								label ='Red'
+								type='range'
+								update={this.update} />
+
+								<NumInput 
+								ref="blue" 
+								min= {0}
+								max= {255}
+								step= {1}
+								val= {this.state.blue}
+								label ='Blue'
+								type='range'
+								update={this.update} />
+
+								<NumInput 
+								ref="green" 
+								min= {0}
+								max= {255}
+								step= {1}
+								val= {this.state.green}
+								label ='Green'
+								type='range'
+								update={this.update} />
+
+
+
+								<div className="color" 
+								style={{
+									backgroundColor: 'rgb(' + this.state.red + ',' + this.state.green + ',' + this.state.blue + ')'
+								}}
+							></div>
+						</div>
+					);
+				}
+			});
+
+			var NumInput = React.createClass({
+				propTypes: {
+					min : React.PropTypes.number,
+					max : React.PropTypes.number,
+					step : React.PropTypes.number,
+					val : React.PropTypes.number,
+					label : React.PropTypes.string,
+					update : React.PropTypes.func.isRequired,
+					type : React.PropTypes.oneOf(['number','range'])
+				},
+				getDefaultProps: function() {
+					return {
+						min : null,
+						max : null,
+						val : 0,
+						step : 1,
+						label : '',
+						type : 'range'
+					};
+				},
+				render:function() {
+					var label = this.props.label !== '' ?
+						<label>{this.props.label} : {this.props.val}</label> : ''
+					return (
+						<div>
+							<input 
+								ref="inp" 
+								type= {this.props.type}
+								min= {this.props.min} 
+								max= {this.props.max}
+								step= {this.props.step}
+								defaultValue = {this.props.val}
+								onChange={this.props.update} />
+								{label}
+							<br/>
+						</div>
+					);
+				}
+			});
+
+			React.render(<App />, document.body);   
+		</script>
+  
+  </body>
+</html>

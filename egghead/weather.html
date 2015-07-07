@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>07</title>
+		<title>weather</title>
 
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>	
    	<script src="../build/react.js"></script>
@@ -20,9 +20,6 @@
 
 		<script type="text/jsx">
 
-
-
-			
 			var App = React.createClass({
 				render: function() {
 					return (
@@ -31,7 +28,6 @@
 				}
 			});
 
-
 			var WeatherBox = React.createClass({
 				render: function() {
 					return (
@@ -39,7 +35,7 @@
 							<City cid="2643743" />
 							<City cid="2636432" />
 							<City cid="3165524" />
-							<City cid="5344157" />
+							<City cid="3128760" />
 						</div>
 					);
 				}
@@ -56,12 +52,12 @@
 					}
 				},
 				componentDidMount: function() {
-					$.get('http://api.openweathermap.org/data/2.5/weather?id=' + this.props.cid + '&units=metric', function(result) {
+					$.get('http://api.openweathermap.org/data/2.5/forecast/daily?id=' + this.props.cid + '&units=metric&cnt=2', function(result) {
 						this.setState({
-							name : result.name,
-							temp : result.main.temp,
-							description : result.weather[0].description,
-							icon : 'http://openweathermap.org/img/w/' + result.weather[0].icon + '.png',
+							name : result.city.name,
+							temp : parseFloat(Math.round(result.list[0].temp.day * 100) / 100).toFixed(1) + " °C",
+							description : result.list[0].weather[0].description,
+							icon : 'http://openweathermap.org/img/w/' + result.list[0].weather[0].icon + '.png',
 							visibility : ''
 						});
 					}.bind(this));
@@ -70,24 +66,19 @@
 					return (
 						<div className={this.state.visibility}>
 							<div className="col-xs-6 city">
-								<h4>
+								<h5>
 									{this.state.name} <img src={this.state.icon} alt='' />
-								</h4>
+								</h5>
 								<h6>{this.state.temp}</h6>
-								<h4>{this.state.description}</h4>
+								<p>{this.state.description}</p>
 							</div>
 						</div>
 					);
 				}
 			});
 
-
-
-
-
 			React.render(<App />, document.body)
 			
-
 		</script>
 
 	</body>
