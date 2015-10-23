@@ -1,0 +1,28 @@
+{
+  "name": "reactExperiments",
+  "version": "1.0.0",
+  "description": "React.js experiments",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Usse/reactjs-experiments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Usse/reactjs-experiments/issues"
+  },
+  "homepage": "https://github.com/Usse/reactjs-experiments#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "babelify": "^6.4.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  }
+}
